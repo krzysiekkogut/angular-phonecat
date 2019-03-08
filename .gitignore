@@ -6,3 +6,5 @@ tmp
 .DS_Store
 .idea
 angular-phonecat-snapshots
+app/**/*.js
+app/**/*.js.map
