@@ -1,6 +1,4 @@
-declare var angular: angular.IAngularStatic;
 import { Component } from "@angular/core";
-import { downgradeComponent } from "@angular/upgrade/static";
 import { ActivatedRoute } from "@angular/router";
 import { Phone, PhoneData } from "../core/phone/phone.service";
 
@@ -25,11 +23,3 @@ export class PhoneDetailComponent {
     this.mainImageUrl = imageUrl;
   }
 }
-
-// Register `phoneDetail` component, along with its associated controller and template
-angular
-  .module("phoneDetail")
-  .directive(
-    "phoneDetail",
-    downgradeComponent({ component: PhoneDetailComponent })
-  );

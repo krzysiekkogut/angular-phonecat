@@ -2,8 +2,6 @@ import { NgModule } from "@angular/core";
 import { HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
-import { UpgradeModule } from "@angular/upgrade/static";
-import { routeParamsProvider } from "./ajs-upgraded-providers";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing-module";
 import { CheckmarkPipe } from "./core/checkmark/checkmark.pipe";
@@ -12,13 +10,7 @@ import { PhoneDetailComponent } from "./phone-detail/phone-detail.component";
 import { PhoneListComponent } from "./phone-list/phone-list.component";
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    UpgradeModule,
-    HttpModule,
-    FormsModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, HttpModule, FormsModule, AppRoutingModule],
   declarations: [
     AppComponent,
     PhoneListComponent,
@@ -26,7 +18,7 @@ import { PhoneListComponent } from "./phone-list/phone-list.component";
     CheckmarkPipe
   ],
   entryComponents: [PhoneListComponent, PhoneDetailComponent],
-  providers: [Phone, routeParamsProvider],
+  providers: [Phone],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

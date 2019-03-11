@@ -1,12 +1,13 @@
 (function(global) {
   System.config({
+    paths: {
+      "npm:": "/node_modules/"
+    },
     map: {
-      rxjs: "/node_modules/rxjs",
-      "@angular": "/node_modules/@angular",
+      rxjs: "npm:/rxjs",
+      "@angular": "npm:@angular",
       app: "/app",
-      "angular2-in-memory-web-api": "/node_modules/angular2-in-memory-web-api",
-      "@angular/upgrade/static":
-        "/node_modules/@angular/upgrade/bundles/upgrade-static.umd.js"
+      "angular2-in-memory-web-api": "npm:angular2-in-memory-web-api"
     },
     packages: {
       app: {
@@ -36,10 +37,6 @@
 
       "@angular/router": {
         main: "bundles/router.umd.js"
-      },
-
-      "@angular/upgrade": {
-        main: "bundles/upgrade.umd.js"
       },
 
       "@angular/forms": {
