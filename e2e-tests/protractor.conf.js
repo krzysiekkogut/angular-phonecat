@@ -1,22 +1,20 @@
 //jshint strict: false
 exports.config = {
-
   allScriptsTimeout: 11000,
 
-  specs: [
-    '*.js'
-  ],
+  specs: ["*.js"],
 
   capabilities: {
-    'browserName': 'chrome'
+    browserName: "chrome"
   },
 
-  baseUrl: 'http://localhost:8000/',
+  baseUrl: "http://localhost:8000/",
 
-  framework: 'jasmine',
+  framework: "jasmine",
 
   jasmineNodeOpts: {
     defaultTimeoutInterval: 30000
-  }
+  },
 
+  useAllAngular2AppRoots: true
 };

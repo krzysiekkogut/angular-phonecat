@@ -24,7 +24,9 @@
           <a [routerLink]="['/phones', phone.id]" class="thumb">
             <img [src]="phone.imageUrl" [alt]="phone.name" />
           </a>
-          <a [routerLink]="['/phones', phone.id]">{{ phone.name }}</a>
+          <a [routerLink]="['/phones', phone.id]" class="name">{{
+            phone.name
+          }}</a>
           <p>{{ phone.snippet }}</p>
         </li>
       </ul>
