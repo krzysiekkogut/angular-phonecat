@@ -4,12 +4,14 @@
       "npm:": "/node_modules/"
     },
     map: {
-      rxjs: "npm:/rxjs",
+      rxjs: "npm:rxjs",
       "@angular": "npm:@angular",
       app: "/app",
       "angular2-in-memory-web-api": "npm:angular2-in-memory-web-api"
     },
     packages: {
+      "": { defaultExtension: "js" },
+
       app: {
         main: "main.js",
         defaultExtension: "js"

@@ -55,7 +55,6 @@
     "copy-libs": "cpx \"node_modules/bootstrap/dist/**/*\" app/lib/bootstrap -C",
     "prestart": "npm install && npm run tsc",
     "start": "http-server ./ -a localhost -p 8000 -c-1",
-    "pretest": "npm install && npm run tsc",
     "test": "karma start karma.conf.js",
     "test-single-run": "npm test -- --single-run",
     "preupdate-webdriver": "npm install",
