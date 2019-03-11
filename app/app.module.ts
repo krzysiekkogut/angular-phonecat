@@ -1,3 +1,4 @@
+import { CheckmarkPipe } from "./core/checkmark/checkmark.pipe";
 import { PhoneDetailComponent } from "./phone-detail/phone-detail.component";
 import { NgModule } from "@angular/core";
 import { HttpModule } from "@angular/http";
@@ -10,7 +11,7 @@ import { routeParamsProvider } from "./ajs-upgraded-providers";
 
 @NgModule({
   imports: [BrowserModule, UpgradeModule, HttpModule, FormsModule],
-  declarations: [PhoneListComponent, PhoneDetailComponent],
+  declarations: [PhoneListComponent, PhoneDetailComponent, CheckmarkPipe],
   entryComponents: [PhoneListComponent, PhoneDetailComponent],
   providers: [Phone, routeParamsProvider]
 })
