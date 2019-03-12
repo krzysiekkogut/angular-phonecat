@@ -71,7 +71,13 @@
       "angular2-in-memory-web-api": {
         main: "./index.js",
         defaultExtension: "js"
-      }
+      },
+
+      "@angular/common/http": {
+        main: "npm:@angular/common/bundles/common-http.umd.js"
+      },
+
+      tslib: { main: "../node_modules/tslib/tslib.js" }
     }
   });
 })(this);

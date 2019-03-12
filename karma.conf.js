@@ -61,7 +61,11 @@ module.exports = function(config) {
         included: false,
         watched: false
       },
-
+      {
+        pattern: "node_modules/tslib/**/*.js",
+        included: false,
+        watched: false
+      },
       {
         pattern: "systemjs.config.js",
         included: false,
@@ -84,7 +88,9 @@ module.exports = function(config) {
 
     proxies: {
       "/node_modules/": "/base/node_modules/",
-      app: "base/app"
+      app: "base/app",
+      "/phone-detail": "/base/app/phone-detail",
+      "/phone-list": "/base/app/phone-list"
     },
 
     exclude: [],

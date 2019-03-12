@@ -1,42 +1,56 @@
-"use strict";
+import { TestBed, inject } from "@angular/core/testing";
+import {
+  Http,
+  BaseRequestOptions,
+  Response,
+  ResponseOptions
+} from "@angular/http";
+import { MockBackend, MockConnection } from "@angular/http/testing";
+import { PhoneData, Phone } from "./phone.service";
 
-describe("Phone", function() {
-  var $httpBackend: angular.IHttpBackendService;
-  var Phone: any;
-  var phonesData = [
-    { name: "Phone X" },
-    { name: "Phone Y" },
-    { name: "Phone Z" }
+describe("Phone", () => {
+  let mockBackend: MockBackend;
+  let phone: Phone;
+  let phonesData: PhoneData[] = [
+    { name: "Phone X", snippet: "", images: [] },
+    { name: "Phone Y", snippet: "", images: [] },
+    { name: "Phone Z", snippet: "", images: [] }
   ];
 
-  // Add a custom equality tester before each test
-  beforeEach(function() {
-    jasmine.addCustomEqualityTester(angular.equals);
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        Phone,
+        MockBackend,
+        BaseRequestOptions,
+        {
+          provide: Http,
+          useFactory: (backend: MockBackend, options: BaseRequestOptions) =>
+            new Http(backend, options),
+          deps: [MockBackend, BaseRequestOptions]
+        }
+      ]
+    });
   });
 
-  // Load the module that contains the `Phone` service before each test
-  beforeEach(angular.mock.module("core.phone"));
+  beforeEach(inject(
+    [MockBackend, Phone],
+    (_mockBackend_: MockBackend, _phone_: Phone) => {
+      mockBackend = _mockBackend_;
+      phone = _phone_;
+    }
+  ));
 
-  // Instantiate the service and "train" `$httpBackend` before each test
-  beforeEach(inject(function(_$httpBackend_, _Phone_) {
-    $httpBackend = _$httpBackend_;
-    $httpBackend.expectGET("phones/phones.json").respond(phonesData);
+  it("should fetch the phones data from `/phones/phones.json`", done => {
+    mockBackend.connections.subscribe((conn: MockConnection) => {
+      conn.mockRespond(
+        new Response(new ResponseOptions({ body: JSON.stringify(phonesData) }))
+      );
+    });
 
-    Phone = _Phone_;
-  }));
-
-  // Verify that there are no outstanding expectations or requests after each test
-  afterEach(function() {
-    $httpBackend.verifyNoOutstandingExpectation();
-    $httpBackend.verifyNoOutstandingRequest();
-  });
-
-  it("should fetch the phones data from `/phones/phones.json`", function() {
-    var phones = Phone.query();
-
-    expect(phones).toEqual([]);
-
-    $httpBackend.flush();
-    expect(phones).toEqual(phonesData);
+    phone.query().subscribe(result => {
+      expect(result).toEqual(phonesData);
+      done();
+    });
   });
 });

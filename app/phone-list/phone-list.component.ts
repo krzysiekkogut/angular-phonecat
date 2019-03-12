@@ -10,7 +10,6 @@ export class PhoneListComponent {
   query: string;
   orderProp: string;
 
-  static $inject = ["phone"];
   constructor(phone: Phone) {
     phone.query().subscribe(phones => {
       this.phones = phones;
